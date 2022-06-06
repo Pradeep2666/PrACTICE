@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img id="reload_img" src="https://media2.giphy.com/media/l3nWhI38IWDofyDrW/giphy.gif?cid=790b7611a7b61800ce32bb06bf4663aabb33cb0667e24b5f&rid=giphy.gif&ct=g" alt="">
+
+</body>
+</html>
+
+<script>
+    let image=document.getElementById("reload_img")
+
+    function checkContent(){
+        // check content logic
+        return true; 
+        // or return false
+    }
+
+
+    let content_promise= new Promise(function(resolve,reject){
+
+          let content =checkContent()
+
+          setTimeout(function(){
+            if (content === true){
+        //  promise is resolved
+                resolve('Content is loaded')
+                // image.src="https://media2.giphy.com/media/Q81NcsY6YxK7jxnr4v/giphy.gif?cid=790b761173db09eb3f787024e189bccf6e1408b643dd0c58&rid=giphy.gif&ct=g"
+            }
+
+            else{
+            //    promise is rejected
+            reject("Content failed to load")
+            }
+          },5000)
+
+    
+
+    });
+    // console.log("hi:",content_promise)
+
+    content_promise.then(function(value){
+        // console.log(value)
+        image.src="https://media2.giphy.com/media/Q81NcsY6YxK7jxnr4v/giphy.gif?cid=790b761173db09eb3f787024e189bccf6e1408b643dd0c58&rid=giphy.gif&ct=g"
+
+    })
+    content_promise.catch(function(err){
+        console.log(err)
+        image.src="https://media3.giphy.com/media/8L0Pky6C83SzkzU55a/giphy.gif?cid=ecf05e47y6kul6r1mm4jus6uoj1xz7qohagjjy6rknrdom5y&rid=giphy.gif&ct=g"
+    })
+    // .then - resolved value
+    // .catch - reject value
+</script>
